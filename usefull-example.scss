@@ -1,0 +1,48 @@
+// placeholder
+%btn-placeholder {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 100px;
+  width: $width-button;
+  @include style-link-text($color-text-light);
+}
+
+//mixins
+@mixin clearfix {
+  &::after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+}
+
+@mixin style-link-text($color) {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $color;
+}
+
+@mixin link-hover-style($action, $color, $amount) {
+  &:link {
+    @extend %btn-placeholder;
+    background-color: $color;
+  }
+  &:hover {
+    background-color: call($action, $color, $amount);
+  }
+}
+
+//functions example
+// @function divide($a, $b) {
+//   @return $a / $b;
+// }
+
+// example of using link hover mixin 
+.btn-main {
+  @include link-hover-style(darken,$color-secondary, 10%);
+}
+
+.btn-hot {
+  @include link-hover-style(lighten, $color-tertiary, 7.5%);
+}
